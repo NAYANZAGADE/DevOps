@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="jenkins-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D33833;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F0D6B7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <path fill="url(#jenkins-grad)" d="M64 10c-29.8 0-54 24.2-54 54s24.2 54 54 54 54-24.2 54-54-24.2-54-54-54z"/>
+  <path fill="#231F20" d="M64 20c-24.3 0-44 19.7-44 44s19.7 44 44 44 44-19.7 44-44-19.7-44-44-44zm-8 60c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm16 0c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/>
+  <circle fill="#F0D6B7" cx="56" cy="72" r="4"/>
+  <circle fill="#F0D6B7" cx="72" cy="72" r="4"/>
+  <path fill="#D33833" d="M64 35c-8.8 0-16 7.2-16 16h32c0-8.8-7.2-16-16-16z"/>
+</svg>

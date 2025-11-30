@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="argo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EF7B4D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E96D3F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <path fill="url(#argo-grad)" d="M64 10L10 40v48l54 30 54-30V40L64 10z"/>
+  <path fill="#fff" d="M64 25l-40 22v44l40 22 40-22V47L64 25z"/>
+  <path fill="#EF7B4D" d="M64 40L40 55v30l24 15 24-15V55L64 40z"/>
+  <circle fill="#fff" cx="64" cy="70" r="8"/>
+  <path fill="#EF7B4D" d="M64 50l-15 8.7v17.3L64 85l15-8.7V58.7L64 50z"/>
+</svg>
