@@ -1,0 +1,8 @@
+.infinity-logo-container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.infinity-logo-container svg {
+  display: block;
+}

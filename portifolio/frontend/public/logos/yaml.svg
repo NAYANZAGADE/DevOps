@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <path fill="#CB171E" d="M4.46 4.46h119.08v119.08H4.46z"/>
+  <path fill="#FFFFFF" d="M27.7 27.7h72.6v72.6H27.7z"/>
+  <path fill="#CB171E" d="M64 40L50 64h8v24h12V64h8z"/>
+  <text x="64" y="110" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#CB171E">YAML</text>
+</svg>

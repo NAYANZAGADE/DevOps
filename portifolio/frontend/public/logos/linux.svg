@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <circle fill="#E95420" cx="64" cy="64" r="60"/>
+  <g fill="#FFFFFF">
+    <!-- Top circle -->
+    <circle cx="64" cy="24" r="10"/>
+    <!-- Bottom left circle -->
+    <circle cx="30" cy="86" r="10"/>
+    <!-- Bottom right circle -->
+    <circle cx="98" cy="86" r="10"/>
+    <!-- Top arc -->
+    <path d="M 64 34 A 30 30 0 0 1 84 50 L 76 56 A 20 20 0 0 0 64 44 Z"/>
+    <!-- Bottom left arc -->
+    <path d="M 40 86 A 30 30 0 0 1 50 56 L 56 62 A 20 20 0 0 0 46 82 Z"/>
+    <!-- Bottom right arc -->
+    <path d="M 88 86 A 30 30 0 0 1 78 56 L 72 62 A 20 20 0 0 0 82 82 Z"/>
+  </g>
+  <!-- Center circle -->
+  <circle fill="#E95420" cx="64" cy="64" r="22"/>
+</svg>
