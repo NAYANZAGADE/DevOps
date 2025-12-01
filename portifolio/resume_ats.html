@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayan Zagade - ATS Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            color: #000;
+            background: white;
+            padding: 20px;
+            font-size: 11px;
+        }
+        
+        .resume {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            font-size: 10px;
+            line-height: 1.3;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            margin-bottom: 8px;
+            padding-bottom: 2px;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            font-size: 11px;
+        }
+        
+        .company-info {
+            font-size: 10px;
+            margin-bottom: 3px;
+        }
+        
+        ul {
+            margin-left: 15px;
+            margin-top: 3px;
+        }
+        
+        li {
+            margin-bottom: 2px;
+            font-size: 10px;
+            line-height: 1.3;
+        }
+        
+        .skills-section {
+            font-size: 10px;
+            line-height: 1.3;
+        }
+        
+        .education-item {
+            margin-bottom: 5px;
+        }
+        
+        .degree {
+            font-weight: bold;
+            font-size: 11px;
+        }
+        
+        .institution {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="header">
+            <h1>NAYAN ZAGADE</h1>
+            <div style="font-weight: bold; font-size: 11px; margin: 5px 0; color: #000;">AWS Certified Solutions Architect – Associate</div>
+            <div class="contact-info">
+                Pune, India<br>
+                Phone: 9960936078<br>
+                Email: nayanzagade7@gmail.com<br>
+                LinkedIn: linkedin.com/in/nayan-zagade-8152b1271
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p>AWS Certified Cloud Solutions Architect specializing in DevOps automation and infrastructure optimization. Experienced in designing resilient AWS architectures, implementing CI/CD pipelines, and managing containerized applications with Kubernetes. Proven track record in cost optimization and automated deployment strategies.</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="job-title">DevOps Engineer - Intern</div>
+            <div class="company-info">HumanCloud Technologies | Pune | July 2024 – Present</div>
+            <ul>
+                <li>Implemented AWS cost optimization strategies by improving EC2/EKS configurations and leveraging Spot Instances</li>
+                <li>Deployed and managed EKS clusters with Karpenter for efficient, dynamic, and scalable node provisioning</li>
+                <li>Configured Argo Rollouts for blue-green and canary deployments enabling zero-downtime releases</li>
+                <li>Integrated DynamoDB for scalable metadata storage supporting log management workloads</li>
+                <li>Automated CI/CD pipelines using Jenkins, GitHub, Helm, and Kubernetes manifests</li>
+                <li>Strengthened cloud infrastructure using IaC (Terraform), monitoring, and container orchestration best practices</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="job-title">GlidingPath – Cloud Deployment Project (AWS ECS)</div>
+            <ul>
+                <li>Containerized and deployed frontend, backend, Keycloak, Redis, and JBoss Workbench services using ECS on EC2/Fargate instances</li>
+                <li>Configured Application Load Balancer with path-based routing, target groups, and health checks</li>
+                <li>Implemented AWS Certificate Manager SSL with full HTTPS support and HTTP to HTTPS redirection</li>
+                <li>Integrated Keycloak for centralized Identity and Access Management</li>
+                <li>Deployed Redis for performance optimization and caching</li>
+                <li>Ensured production-grade reliability using ECS auto-scaling, IAM roles, and secure networking</li>
+            </ul>
+            
+            <div class="job-title">LeaseOasis & Property Bulls – Multi-Architecture EKS Deployment</div>
+            <ul>
+                <li>Designed and deployed Amazon EKS clusters supporting x86 and ARM workloads</li>
+                <li>Applied cost optimization using EC2 Spot Instances with Karpenter node provisioning</li>
+                <li>Integrated Argo Rollouts for canary deployments with real-time monitoring</li>
+                <li>Automated cluster scaling to handle variable workloads</li>
+                <li>Enhanced deployment pipeline using Helm charts and Kubernetes manifests</li>
+            </ul>
+            
+            <div class="job-title">CI/CD Pipeline with Jenkins</div>
+            <ul>
+                <li>Built Declarative Pipeline for Java applications covering build, test, analysis, package, and deploy stages</li>
+                <li>Integrated SonarQube for static code analysis and security vulnerability checks</li>
+                <li>Packaged and containerized applications using Docker and Docker Compose</li>
+                <li>Published Docker images to private container registries</li>
+                <li>Automated artifact deployment to Apache Tomcat on AWS EC2 using SSH and SCP</li>
+            </ul>
+            
+            <div class="job-title">AWS Infrastructure Deployment using Terraform</div>
+            <ul>
+                <li>Provisioned VPC, subnets, Internet Gateway, route tables, security groups, and EC2 instances using Terraform</li>
+                <li>Deployed production-ready web server infrastructure in AWS cloud environment</li>
+                <li>Implemented Infrastructure as Code best practices for repeatable deployments</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-section">
+                <strong>AWS Certified Skills:</strong> Solutions Architecture, EC2, EKS, ECS, IAM, Application Load Balancer, VPC, CloudWatch, Auto Scaling, Load Balancing, Certificate Manager, DynamoDB, Cost Optimization<br><br>
+                <strong>DevOps Tools:</strong> CI/CD, Git, GitHub, Jenkins, Docker, Kubernetes, Argo Rollouts, Helm, SonarQube, Terraform, Ansible, Infrastructure as Code (IaC), Pipelines as Code<br><br>
+                <strong>Cloud Platforms:</strong> Amazon Web Services (AWS), Google Cloud Platform (GCP)<br><br>
+                <strong>Programming Languages:</strong> Python, Groovy DSL, Linux Shell Scripting, Bash<br><br>
+                <strong>Operating Systems:</strong> Linux, Windows, macOS<br><br>
+                <strong>Container Technologies:</strong> Docker, Kubernetes, Container Orchestration
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <div class="degree">Bachelor of Technology in Computer Engineering</div>
+                <div class="institution">DY Patil School of Engineering and Technology | 2021 – 2024</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Diploma in Computer Engineering</div>
+                <div class="institution">DY Patil Polytechnic | 2018 – 2021</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Secondary School Certificate (10th Grade)</div>
+                <div class="institution">ADV Bapusaheb Bhonde High School | 2018</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <ul>
+                <li>AWS Certified Solutions Architect – Associate</li>
+                <li>Advanced Certification in Cloud Computing & DevOps (IIT Guwahati – Ethans Tech)</li>
+                <li>AWS Cloud Technical Essentials – Coursera</li>
+                <li>Machine Learning Using Python – D.Y. Patil University</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+NAYAN ZAGADE
+Pune, India
+Phone: 9960936078
+Email: nayanzagade7@gmail.com
+LinkedIn: linkedin.com/in/nayan-zagade-8152b1271
+
+PROFESSIONAL SUMMARY
+Entry-Level Cloud & DevOps Engineer with hands-on experience in AWS, Kubernetes, Docker, Jenkins, Terraform, and CI/CD automation. Skilled in cloud deployments, container orchestration, infrastructure as code (IaC), monitoring, and cost optimization. Strong ability to deploy scalable, secure, and automated cloud-native applications.
+
+PROFESSIONAL EXPERIENCE
+
+DevOps Engineer - Intern
+HumanCloud Technologies | Pune | July 2024 – Present
+• Implemented AWS cost optimization strategies by improving EC2/EKS configurations and leveraging Spot Instances
+• Deployed and managed EKS clusters with Karpenter for efficient, dynamic, and scalable node provisioning
+• Configured Argo Rollouts for blue-green and canary deployments enabling zero-downtime releases
+• Integrated DynamoDB for scalable metadata storage supporting log management workloads
+• Automated CI/CD pipelines using Jenkins, GitHub, Helm, and Kubernetes manifests
+• Strengthened cloud infrastructure using IaC (Terraform), monitoring, and container orchestration best practices
+
+PROJECTS
+
+GlidingPath – Cloud Deployment Project (AWS ECS)
+• Containerized and deployed frontend, backend, Keycloak, Redis, and JBoss Workbench services using ECS on EC2/Fargate instances
+• Configured Application Load Balancer with path-based routing, target groups, and health checks
+• Implemented AWS Certificate Manager SSL with full HTTPS support and HTTP to HTTPS redirection
+• Integrated Keycloak for centralized Identity and Access Management
+• Deployed Redis for performance optimization and caching
+• Ensured production-grade reliability using ECS auto-scaling, IAM roles, and secure networking
+
+LeaseOasis & Property Bulls – Multi-Architecture EKS Deployment
+• Designed and deployed Amazon EKS clusters supporting x86 and ARM workloads
+• Applied cost optimization using EC2 Spot Instances with Karpenter node provisioning
+• Integrated Argo Rollouts for canary deployments with real-time monitoring
+• Automated cluster scaling to handle variable workloads
+• Enhanced deployment pipeline using Helm charts and Kubernetes manifests
+
+CI/CD Pipeline with Jenkins
+• Built Declarative Pipeline for Java applications covering build, test, analysis, package, and deploy stages
+• Integrated SonarQube for static code analysis and security vulnerability checks
+• Packaged and containerized applications using Docker and Docker Compose
+• Published Docker images to private container registries
+• Automated artifact deployment to Apache Tomcat on AWS EC2 using SSH and SCP
+
+AWS Infrastructure Deployment using Terraform
+• Provisioned VPC, subnets, Internet Gateway, route tables, security groups, and EC2 instances using Terraform
+• Deployed production-ready web server infrastructure in AWS cloud environment
+• Implemented Infrastructure as Code best practices for repeatable deployments
+
+TECHNICAL SKILLS
+
+DevOps Tools: CI/CD, Git, GitHub, Jenkins, Docker, Kubernetes, Argo Rollouts, Helm, SonarQube, Terraform, Ansible, Infrastructure as Code (IaC), Pipelines as Code
+
+Cloud Platforms: Amazon Web Services (AWS), Google Cloud Platform (GCP)
+
+AWS Services: EC2, EKS, ECS, IAM, Application Load Balancer, VPC, CloudWatch, Auto Scaling, Load Balancing, Certificate Manager, DynamoDB
+
+Programming Languages: Python, Groovy DSL, Linux Shell Scripting, Bash
+
+Operating Systems: Linux, Windows, macOS
+
+Container Technologies: Docker, Kubernetes, Container Orchestration
+
+Monitoring & Logging: CloudWatch, Application Performance Monitoring
+
+Version Control: Git, GitHub, Source Code Management
+
+EDUCATION
+
+Bachelor of Technology in Computer Engineering
+DY Patil School of Engineering and Technology | 2021 – 2024
+
+Diploma in Computer Engineering
+DY Patil Polytechnic | 2018 – 2021
+
+Secondary School Certificate (10th Grade)
+ADV Bapusaheb Bhonde High School | 2018
+
+CERTIFICATIONS
+
+Advanced Certification in Cloud Computing & DevOps
+IIT Guwahati – Ethans Tech
+
+AWS Cloud Technical Essentials
+Coursera
+
+Machine Learning Using Python
+D.Y. Patil University
+
+KEYWORDS: DevOps Engineer, Cloud Engineer, AWS, Kubernetes, Docker, Jenkins, Terraform, CI/CD, Infrastructure as Code, Container Orchestration, Microservices, Cloud Migration, Automation, Monitoring, Security, Scalability, Cost Optimization

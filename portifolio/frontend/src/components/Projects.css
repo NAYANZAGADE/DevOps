@@ -1,0 +1,77 @@
+.projects h2 {
+  text-align: left;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.projects h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--accent-primary);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 50px;
+}
+
+.project-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--text-primary);
+  padding: 40px;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateX(4px);
+  border-left-width: 3px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+.project-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-list li {
+  padding: 8px 0 8px 20px;
+  position: relative;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.project-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
