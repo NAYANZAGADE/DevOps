@@ -1,0 +1,32 @@
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: read-only-policy
+spec:
+  selector:
+    matchLabels:
+      access: readonly
+  process:
+    matchPaths:
+    # Block file modification commands
+    - path: /usr/bin/vi
+    - path: /usr/bin/vim
+    - path: /usr/bin/nano
+    - path: /bin/rm
+    - path: /usr/bin/rm
+    - path: /bin/mv
+    - path: /usr/bin/mv
+    - path: /bin/cp
+    - path: /usr/bin/cp
+    - path: /usr/bin/touch
+    - path: /bin/mkdir
+    - path: /usr/bin/mkdir
+    - path: /bin/rmdir
+    - path: /usr/bin/rmdir
+    # Block package installation
+    - path: /usr/bin/apt
+    - path: /usr/bin/apt-get
+    - path: /usr/bin/yum
+    - path: /usr/bin/pip
+  action:
+    Block

@@ -1,0 +1,20 @@
+apiVersion: security.kubearmor.com/v1
+kind: KubeArmorPolicy
+metadata:
+  name: audit-privileged-operations
+spec:
+  selector:
+    matchLabels:
+      environment: production
+  process:
+    matchPaths:
+    - path: /bin/su
+    - path: /usr/bin/sudo
+    - path: /sbin/iptables
+    - path: /usr/sbin/tcpdump
+  capabilities:
+    matchCapabilities:
+    - capability: sys_admin
+    - capability: net_admin
+  action:
+    Audit
