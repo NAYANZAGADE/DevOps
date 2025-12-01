@@ -1,3 +1,31 @@
 # Ignore embedded git repositories
 EFK/observability-zero-to-hero/
 argocd/argocd-demos/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl
+
+# Node modules and cache
+**/node_modules/
+**/.cache/
+**/dist/
+**/build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
