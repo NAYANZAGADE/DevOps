@@ -1,0 +1,12 @@
+replicaCount: 1
+serviceAccount:
+  name: alb-aws-load-balancer-controller
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::55510356456458715761:role/AWSAlbController
+clusterName: demo-cluster
+region: ap-south-1
+vpcId: vpc-06685d4c055519b3d
+logLevel: debug
+
+
+# update iam arn

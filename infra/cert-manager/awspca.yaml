@@ -1,0 +1,7 @@
+replicaCount: 1
+serviceAccount:
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::5555756757108715761:role/AWSPcaRole
+  name: "awspca"
+
+# update iam arn

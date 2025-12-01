@@ -1,0 +1,53 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: viewer
+rules:
+  - apiGroups: ["*"]
+    resources: ["deployments", "configmaps", "pods", "secrets", "services"]
+    verbs: ["get", "list", "watch"]
+
+
+
+# docker pull nayanzagade7/gliding:latest
+
+# docker run -d -p 8000:8000 \
+#   -e DB_HOST=app-db.c1cy6wak2qua.ap-south-1.rds.amazonaws.com \
+#   -e DB_USER=postgres \
+#   -e DB_PASS=admin123 \
+#   -e DB_NAME=appdb \
+#   -e DB_PORT=5432 \
+#   nayanzagade7/gliding:latest
+    
+
+# #!/bin/bash
+# # ------------------------------
+# # Update system and install Docker
+# # ------------------------------
+# apt update -y
+# apt install -y docker.io
+# systemctl start docker
+# systemctl enable docker
+
+# # ------------------------------
+# # Add ubuntu user to docker group and apply immediately
+# # ------------------------------
+# usermod -aG docker ubuntu
+# newgrp docker << END
+# # ------------------------------
+# # Pull Docker image from Docker Hub
+# # ------------------------------
+# docker pull nayanzagade7/gliding:latest
+
+# # ------------------------------
+# # Run the Flask container
+# # ------------------------------
+# docker run -d -p 8000:8000 \
+#   -e DB_HOST=app-db.c1cy6wak2qua.ap-south-1.rds.amazonaws.com \
+#   -e DB_USER=postgres \
+#   -e DB_PASS=admin123 \
+#   -e DB_NAME=appdb \
+#   -e DB_PORT=5432 \
+#   nayanzagade7/gliding:latest
+# END

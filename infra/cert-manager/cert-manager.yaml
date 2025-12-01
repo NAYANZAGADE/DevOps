@@ -1,0 +1,10 @@
+crds:
+  enabled: true
+replicaCount: 1
+serviceAccount:
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::555108t545656456715761:role/AWSCertManager
+enableCertificateOwnerRef: true #deletes certifices tls secret  when deletion is performed
+
+
+# update iam arn
