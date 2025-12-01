@@ -1,0 +1,7 @@
+.git
+.idea
+*.md
+build/
+.gradle/
+node_modules/
+*.log

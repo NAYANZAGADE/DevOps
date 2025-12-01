@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: failure-rate-check
+spec:
+  metrics:
+  - name: failure-rate
+    interval: 30s
+    count: 2
+    successCondition: result[0] < 15  # Success if failure rate < 15%
+    failureCondition: result[0] >= 15 # Fail if failure rate >= 15%
+    provider:
+      prometheus:
+        address: http://kube-prometheus-stack-prometheus.monitoring:9090
+        query: |
+          (
+            sum(rate(failure_requests_failed_total[5m])) 
+            / sum(rate(failure_requests_total[5m]))
+          ) * 100

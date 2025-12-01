@@ -1,0 +1,16 @@
+replicaCount: 1
+serviceAccount:
+  name: alb-aws-load-balancer-controller
+  annotations: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::555108715761:role/AWS-ALB-Podidentity-Policy
+clusterName: dev-module-cluster
+region: ap-south-1
+vpcId: vpc-03f55d7116a1ce43f
+logLevel: debug
+
+# Pod Identity configuration
+podIdentityAssociation:
+  create: true
+  roleArn: arn:aws:iam::555108715761:role/AWS-ALB-Podidentity-Policy
+  serviceAccountName: alb-aws-load-balancer-controller
+  namespace: kube-system

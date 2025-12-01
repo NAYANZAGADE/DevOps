@@ -1,0 +1,110 @@
+name: gliding-path CI/CD Dev
+
+on:
+  push:
+    branches: [ dev ]   
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest #runner 
+    
+    steps:
+    - uses: actions/checkout@v4   #code checkout Downloads your repository code to the runner
+
+
+    
+    - name: Set up JDK 21               #Java Setup Installs Java 21 (Eclipse Temurin distribution)
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    
+    - name: Cache Gradle packages    #Installs Java 21 (Eclipse Temurin distribution) # aster builds (avoids re-downloading dependencies)
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+    
+    - name: Make gradlew executable        #Gradle Permissions  Ensures Gradle wrapper script can execute
+
+
+      run: chmod +x ./gp-backend/gradlew
+    
+    - name: Build with Gradle   #Application Build  #clean: Removes previous build artifacts  #build: Compiles code, creates JAR  #-x test: Skips tests (run separately)
+
+
+      run: |
+        cd gp-backend
+        ./gradlew clean build -x test
+    
+    - name: Run tests   #Test Execution  #Runs all unit/integration tests Pipeline fails if tests fail
+
+      run: |
+        cd gp-backend
+        ./gradlew test
+    
+    - name: Set up Docker Buildx      #Docker Setup  Enables advanced Docker features (caching, multi-platform)
+
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./gp-backend
+        load: true
+        tags: glidingpath-backend:${{ github.sha }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    
+    - name: Login to Docker Hub
+      if: github.ref == 'refs/heads/dev'
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Push Docker image
+      if: github.ref == 'refs/heads/dev'
+      run: |
+        docker tag glidingpath-backend:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-${{ github.sha }}
+        docker tag glidingpath-backend:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-${{ github.sha }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-latest
+
+  deploy-dev:
+    needs: build
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+    - name: Deploy to EC2 Dev
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          docker pull ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-latest
+          docker stop glidingpath-dev || true
+          docker rm glidingpath-dev || true
+          docker run -d --name glidingpath-dev \
+            -p 9090:9090 \
+            -e SPRING_PROFILES_ACTIVE=dev \
+            -e SPRING_DATASOURCE_URL="${{ secrets.DEV_DATABASE_URL }}" \
+            -e SPRING_DATASOURCE_USERNAME="${{ secrets.DEV_DATABASE_USERNAME }}" \
+            -e SPRING_DATASOURCE_PASSWORD="${{ secrets.DEV_DATABASE_PASSWORD }}" \
+            -e AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
+            -e AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+            --restart unless-stopped \
+            ${{ secrets.DOCKER_USERNAME }}/glidingpath-backend:dev-latest
+
+
+
+aws ecs describe-tasks  --cluster Devcluster --tasks d26a7aed15f648dd929b56b06365d80a --region us-west-2  --query "tasks[0].containers[0].reason"
+
+ 

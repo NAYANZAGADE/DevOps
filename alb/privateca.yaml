@@ -1,0 +1,14 @@
+apiVersion: awspca.cert-manager.io/v1beta1
+kind: AWSPCAIssuer
+metadata:
+  name: awspcaissuer
+  namespace: argocd
+spec:
+  arn: arn:aws:acm-pca:ap-south-1:555108715761:certificate-authority/67fa8755-1a57-4bc3-b156-e09aa2293c0e
+ 
+
+
+
+ arn:aws:acm:ap-south-1:555108715761:certificate/6bce0a83-e7b2-4120-80bb-f2bbc351e83e
+
+ alb.ingress.kubernetes.io/certificate-arn: rn:aws:acm:ap-south-1:555108715761:certificate/6bce0a83-e7b2-4120-80bb-f2bbc351e83e

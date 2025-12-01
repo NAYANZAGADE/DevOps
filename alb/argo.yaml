@@ -1,0 +1,36 @@
+server:
+  extraArgs:
+  - --insecure
+  - --x-frame-options=""
+  ingress:
+    enabled: true
+    ingressClassName: "alb"
+    annotations: 
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/target-type: ip
+        alb.ingress.kubernetes.io/group.name: test
+        alb.ingress.kubernetes.io/group.order: "1"
+        alb.ingress.kubernetes.io/backend-protocol: HTTP
+        alb.ingress.kubernetes.io/conditions.argogrpc: |  
+          [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "Content-Type", "values":["application/grpc"]}}]
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80},{"HTTPS": 443},{"HTTP": 8080}]'
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:5551054564668715761:certificate/4cd34ed2-bb91-43b1-9cd3-d8dc4671274a
+        alb.ingress.kubernetes.io/ssl-redirect: '443'
+        # alb.ingress.kubernetes.io/subnets: subnet-07de86a36d8057b75,subnet-06eb5cbd644f8b68d
+
+
+    hostname: argocd.nayanzagade.xyz
+    extraTls: 
+      - hosts:
+        - argocd.nayanzagade.xyz
+dex:
+  enabled: false
+global:
+  domain: argocd.nayanzagade.xyz
+configs:
+  cm:
+    accounts.admin: apiKey
+ 
+
+
+

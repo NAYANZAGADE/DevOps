@@ -1,0 +1,28 @@
+plugins {
+	id 'java'
+	id 'io.spring.dependency-management'
+}
+
+group = 'com.glidingpath'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.modulith:spring-modulith-starter-core:1.2.0'
+	implementation 'org.keycloak:keycloak-admin-client:26.0.5'
+	implementation 'org.keycloak:keycloak-core:26.0.5'
+	implementation project(':modules:glidingpath-core')
+	implementation project(':modules:glidingpath-common')
+	implementation project(':modules:x-glidingpath-keycloak')
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+} 

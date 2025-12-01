@@ -1,0 +1,3 @@
+# Ignore embedded git repositories
+EFK/observability-zero-to-hero/
+argocd/argocd-demos/

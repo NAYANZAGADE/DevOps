@@ -1,0 +1,168 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.glidingpath.processor'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+// Include all module source sets in the main project
+sourceSets {
+	main {
+		java {
+			srcDirs += [
+				'modules/glidingpath-core/src/main/java',
+				'modules/x-glidingpath-finch/src/main/java',
+				'modules/glidingpath-auth/src/main/java',
+				'modules/glidingpath-admin/src/main/java',
+				'modules/glidingpath-common/src/main/java',
+				'modules/glidingpath-platform/src/main/java',
+				'modules/glidingpath-rules/src/main/java',
+				'modules/x-glidingpath-keycloak/src/main/java'
+			]
+		}
+		resources {
+			srcDirs += [
+				'modules/glidingpath-core/src/main/resources',
+				'modules/x-glidingpath-finch/src/main/resources',
+				'modules/glidingpath-auth/src/main/resources',
+				'modules/glidingpath-admin/src/main/resources',
+				'modules/glidingpath-common/src/main/resources',
+				'modules/glidingpath-platform/src/main/resources',
+				'modules/glidingpath-rules/src/main/resources',
+				'modules/x-glidingpath-keycloak/src/main/resources'
+			]
+		}
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+// Apply repositories and Spring Boot BOM to all subprojects so their starters resolve
+subprojects {
+	apply plugin: 'io.spring.dependency-management'
+
+	repositories {
+		mavenCentral()
+	}
+
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(21)
+		}
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+		}
+	}
+
+	// Keep JAR creation enabled for inter-module dependencies
+	// but we'll include source sets in the main project
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation("com.tryfinch.api:finch-java:7.3.1")
+	implementation 'org.modelmapper:modelmapper:3.2.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0'
+	implementation 'org.keycloak:keycloak-admin-client:26.0.5'
+	implementation 'org.keycloak:keycloak-core:26.0.5'
+	
+	// AWS S3 dependencies
+	implementation 'software.amazon.awssdk:s3:2.24.12'
+	implementation 'software.amazon.awssdk:sts:2.24.12'
+	
+	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly "org.flywaydb:flyway-database-postgresql"
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+
+	// Drools Rule Engine
+	implementation 'org.drools:drools-core:8.44.0.Final'
+	implementation 'org.drools:drools-compiler:8.44.0.Final'
+	implementation 'org.kie:kie-api:8.44.0.Final'
+	implementation 'org.kie:kie-ci:8.44.0.Final'
+	implementation 'org.drools:drools-xml-support:8.44.0.Final'
+
+	// Resilience4j
+	implementation 'io.github.resilience4j:resilience4j-spring-boot3:2.2.0'
+	implementation 'io.github.resilience4j:resilience4j-retry:2.2.0'
+	
+	// Spring Modulith
+	implementation 'org.springframework.modulith:spring-modulith-starter-core:1.2.0'
+
+	
+	implementation project(':modules:glidingpath-auth')
+	implementation project(':modules:glidingpath-platform')
+	implementation project(':modules:x-glidingpath-keycloak')
+	implementation project(':modules:x-glidingpath-finch')
+	implementation project(':modules:glidingpath-common')
+	implementation project(':modules:glidingpath-core')
+	implementation project(':modules:glidingpath-admin')
+	implementation project(':modules:glidingpath-rules')
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	enabled = false
+}
+
+// Static ERD Generation Tasks
+ task generateStaticERD {
+     doLast {
+         println "Generating static ERD files..."
+         
+         // Call the shell script for generation
+         def scriptFile = file("generate_static_erd.sh")
+         if (scriptFile.exists()) {
+             exec {
+                 commandLine 'bash', 'generate_static_erd.sh'
+             }
+             println "✅ ERD generated using generate_static_erd.sh"
+         } else {
+             println "❌ generate_static_erd.sh not found!"
+             println "📁 Please ensure the script exists in project root"
+         }
+     }
+ }
+
+ task generateERDAll {
+     dependsOn generateStaticERD
+     doLast {
+         println "🎯 Static ERD Generation Complete!"
+         println "📖 Open docs/ERD_DATABASE.md to view the database ERD"
+         println "🏗️ Open docs/ERD_ENTITIES.md to view the entities ERD"
+         println ""
+         println "💡 Usage:"
+         println "  ./gradlew generateERDAll    # Generate ERD"
+         println "  ./generate_static_erd.sh    # Direct script call"
+     }
+ }

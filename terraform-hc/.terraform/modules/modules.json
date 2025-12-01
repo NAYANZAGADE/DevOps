@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"alb","Source":"./alb.tf","Dir":"alb.tf"},{"Key":"ecs","Source":"./ecs","Dir":"ecs"},{"Key":"iam","Source":"./iam","Dir":"iam"},{"Key":"networking","Source":"./networking","Dir":"networking"},{"Key":"route53","Source":"./route53.tf","Dir":"route53.tf"},{"Key":"security_group","Source":"./security-group","Dir":"security-group"}]}

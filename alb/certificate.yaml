@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nayanzagade-wildcard
+  namespace: argocd
+spec:
+  # The secret name to store the signed certificate
+  secretName: nayanzagade-wildcard-tls
+  # Common Name should match one of the dnsNames
+  commonName: "*.nayanzagade.xyz" 
+  dnsNames:
+  - "*.nayanzagade.xyz"
+  - "nayanzagade.xyz" 
+  - "argocd.nayanzagade.xyz" # Include the root domain too
+  # Duration of the certificate
+  duration: 8760h  # 1 year (24h is very short for a certificate)
+  # Renew 720 hours (30 days) before expiration
+  renewBefore: 720h
+  # Important: Ensure the issuerRef is set to the issuer or cluster issuer configured earlier
+  issuerRef:
+    group: awspca.cert-manager.io
+    kind: AWSPCAIssuer
+    name: awspcaissuer
+  usages:
+  - server auth
+  - digital signature
+  - key encipherment

@@ -1,0 +1,8 @@
+elasticsearchHosts: "http://elasticsearch-master:9200"
+service:
+  type: ClusterIP
+# Disable service account token creation
+serviceAccount: ""
+automountToken: false
+# Remove certificate requirements
+secretMounts: []

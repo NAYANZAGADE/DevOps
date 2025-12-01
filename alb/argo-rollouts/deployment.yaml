@@ -1,0 +1,114 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: flask-failure-rollout
+  namespace: default
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: flask-failure
+  template:
+    metadata:
+      labels:
+        app: flask-failure
+    spec:
+      containers:
+      - name: flask-failure
+        image: nayanzagade7/stable:v2
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /metrics       # lightweight health endpoint
+            port: 8000
+          initialDelaySeconds: 15   # wait for app to stabilize
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 3       # 3 failed checks → restart
+        readinessProbe:
+          httpGet:
+            path: /metrics          # checks dependencies (DB, cache, etc.)
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3       # avoid flapping
+          successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /metrics
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 30
+  strategy:
+    canary:
+      stableService: flask-failure-rollout-stable
+      canaryService: flask-failure-rollout-canary
+      trafficRouting:
+        alb: 
+          ingress: app-service
+          servicePort: 8000
+          rootService: root-service
+      steps:
+      - setWeight: 50  # Changed from 30 to 50
+      - pause: {duration: 5m}
+      - analysis:
+          templates:
+          - templateName: failure-rate-check
+      - setWeight: 100
+      - pause: {duration: 5m}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-failure-rollout-stable
+  labels:
+    app: flask-failure
+spec:
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: flask-failure
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-failure-rollout-canary
+  labels:
+    app: flask-failure
+spec:
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: flask-failure      
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flask-failure-servicemonitor
+  namespace: default
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: flask-failure
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+
+

@@ -1,0 +1,10 @@
+rootProject.name = 'core'
+// Modular subprojects
+include 'modules:glidingpath-auth'
+include 'modules:glidingpath-core'
+include 'modules:glidingpath-common'
+include 'modules:glidingpath-platform'
+include 'modules:glidingpath-admin'
+include 'modules:glidingpath-rules'
+include 'modules:x-glidingpath-finch'
+include 'modules:x-glidingpath-keycloak'

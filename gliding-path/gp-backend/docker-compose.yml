@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "9090:9090"
+
+    environment:
+      # ======= PRIMARY APPLICATION DATABASE (RDS) =======
+      SPRING_DATASOURCE_URL: jdbc:postgresql://glidingpath-db.cj44eokqc22l.ap-south-1.rds.amazonaws.com:5432/gliding-path-dev
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin123456
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+      # ======= KEYCLOAK DATABASE (OPTIONAL) =======
+      SPRING_DATASOURCE_KEYCLOAK_URL: jdbc:postgresql://glidingpath-db.cj44eokqc22l.ap-south-1.rds.amazonaws.com:5432/keycloak
+      SPRING_DATASOURCE_KEYCLOAK_USERNAME: postgres
+      SPRING_DATASOURCE_KEYCLOAK_PASSWORD: admin123456
+      SPRING_DATASOURCE_KEYCLOAK_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+      # ======= FLYWAY MIGRATIONS (OPTIONAL) =======
+      SPRING_FLYWAY_URL: jdbc:postgresql://glidingpath-db.cj44eokqc22l.ap-south-1.rds.amazonaws.com:5432/gliding-path-dev
+      SPRING_FLYWAY_USER: postgres
+      SPRING_FLYWAY_PASSWORD: admin123456
+      SPRING_FLYWAY_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+    restart: always
+
+
+ 

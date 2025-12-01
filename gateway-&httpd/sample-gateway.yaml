@@ -1,0 +1,43 @@
+# =========================
+# GKE Gateway
+# =========================
+
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: Gateway
+# metadata:
+#   name: demo-gateway
+#   namespace: default
+# spec:
+#   gatewayClassName: gke-l7-global-external-managed
+#   listeners:
+#   - name: http
+#     protocol: HTTP
+#     port: 80
+#     hostname: argo.nayanzagade.xyz
+
+# =========================
+# HTTPRoute pointing to Rollout services
+# =========================
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: demo-route
+#   namespace: default
+# spec:
+#   parentRefs:
+#   - name: demo-gateway
+#   hostnames:
+#   - argo.nayanzagade.xyz
+#   rules:
+#   - matches:
+#     - path:
+#         type: PathPrefix
+#         value: /
+#     backendRefs:
+#     - name: flask-failure-rollout-stable
+#       port: 8000
+#       weight: 50
+#     - name: flask-failure-rollout-canary
+#       port: 8000
+#       weight: 50
